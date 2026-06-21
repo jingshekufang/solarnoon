@@ -72,7 +72,7 @@
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div class="space-y-1">
                           <div class="text-xs font-mono font-semibold text-slate-500">
-                            國家標準時間 (NST / UTC+8)
+                            目前當地設備時間 (Local Time)
                           </div>
                           <div id="realtimeClock" class="text-4xl md:text-5xl font-extrabold text-amber-400 tracking-widest font-mono">
                             00:00:00
@@ -368,8 +368,8 @@
         // --- 3. 即時國家標準時鐘 ---
         function updateNSTClock() {
             const now = new Date();
-            document.getElementById('realtimeClock').textContent = now.toLocaleTimeString('zh-TW', { hour12: false, timeZone: 'Asia/Taipei });
-            document.getElementById('gregorianDate').textContent = now.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: 'Asia/Taipei });
+            document.getElementById('realtimeClock').textContent = now.toLocaleTimeString('zh-TW', { hour12: false });
+            document.getElementById('gregorianDate').textContent = now.toLocaleDateString('zh-TW', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' });
             document.getElementById('julianDayText').textContent = "JD: " + getJulianDay(now).toFixed(5);
             
             try {
