@@ -1,0 +1,15 @@
+{
+  "name": "日中時間計算",
+  "short_name": "日中計算",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#020617",
+  "theme_color": "#f59e0b",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/3222/3222794.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
