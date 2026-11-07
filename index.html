@@ -466,8 +466,21 @@
                     setTimeout(() => status.textContent = "", 3000);
                 },
                 (err) => {
-                    status.textContent = "❌ 定位獲取失敗，請手動輸入經緯度。";
-                }
+                    customLat = pos.coords.latitude;
+                    customLng = pos.coords.longitude;
+                    document.getElementById('latInput').value = customLat.toFixed(4);
+                    document.getElementById('lngInput').value = customLng.toFixed(4);
+                    status.textContent = "✅ 精準取得當前經緯度！";
+                    performNoonCalculation();
+                    setTimeout(() => status.textContent = "", 4000);
+                },
+                (err) => {
+                    // 如果被拒絕或超時，會顯示在這裡
+                    if(err.code === 1) status.textContent = "❌ 定位失敗：請到設定開啟定位權限。";
+                    else status.textContent = "❌ 定位獲取超時，請在空曠處重試。";
+                },
+                // 👇 這三行是關鍵：要求高精度、最多等10秒、不使用舊紀錄
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
             );
         }
 
