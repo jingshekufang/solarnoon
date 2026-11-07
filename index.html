@@ -2,12 +2,21 @@
 <html lang="zh-Hant-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 加入 viewport-fit=cover 支援 iPad 滿版全螢幕 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <!-- === 蘋果 iOS App 專屬設定 === -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="日中萬年曆">
+    
     <title>GPS 日中時間 & 萬年曆 - NOAA 高精度版</title>
+    
     <!-- 引入 Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Lunar-javascript (農曆轉換庫) -->
-    <script src="https://cdn.jsdelivr.net/npm/lunar-javascript/lunar.min.js"></script>
+    
+    <!-- 【重點修改】改為讀取同資料夾的離線版 lunar.min.js -->
+    <script src="./lunar.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -25,6 +34,13 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap');
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            /* 👇 加上這兩行，防止 iPad 手指長按時文字被反白或跳出拷貝選單 */
+            -webkit-user-select: none;
+            -webkit-touch-callout: none;
+        }
+        /* 👇 加上這段，確保你的經緯度「輸入框」依然可以正常打字 */
+        input {
+            -webkit-user-select: auto;
         }
         .font-mono {
             font-family: 'JetBrains Mono', monospace;
